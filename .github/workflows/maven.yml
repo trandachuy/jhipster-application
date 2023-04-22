@@ -9,23 +9,5 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-      - name: Use cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: "${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}"
-          restore-keys: |
-            ${{ runner.os }}-maven-
-      - name: Configure Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-          maven-version: 3.8.6
-      - name: "Run Maven"
-        shell: bash
-        run: mvn clean install --batch-mode
-      - name: Use the Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
-        with: 
-          name: target
-          path: /home/runner/work/frontend-maven-plugin/frontend-maven-plugin/frontend-maven-plugin/target
+      - name: Build docker file
+        run: docker build -f .devcontainer/Dockerfile -t jhipster:dev
