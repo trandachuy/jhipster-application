@@ -10,4 +10,4 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Build docker file
-        run: docker build -f .devcontainer/ -t jhipster:dev
+        run: docker build -t jhipster -f .devcontainer/ .
